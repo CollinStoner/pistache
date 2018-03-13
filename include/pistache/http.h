@@ -475,6 +475,24 @@ public:
         return putOnWire(body.c_str(), body.size());
     }
 
+    Async::Promise<ssize_t> send(
+            Code code,
+            const std::vector<unsigned char> body,
+            const Mime::MediaType &mime = Mime::MediaType())
+    {
+        code_ = code;
+
+        if (mime.isValid()) {
+            auto contentType = headers_.tryGet<Header::ContentType>();
+            if (contentType)
+                contentType->setMime(mime);
+            else
+                headers_.add(std::make_shared<Header::ContentType>(mime));
+        }
+
+        return putOnWire((char*)body.data(), body.size());
+    }
+
     template<size_t N>
     Async::Promise<ssize_t> send(
             Code code,

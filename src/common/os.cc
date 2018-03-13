@@ -154,7 +154,6 @@ namespace Polling {
         if (mode == Mode::Edge)
             ev.events |= EPOLLET;
         ev.data.u64 = tag.value_;
-
         TRY(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, fd, &ev));
     }
 
@@ -166,7 +165,6 @@ namespace Polling {
         if (mode == Mode::Edge)
             ev.events |= EPOLLET;
         ev.data.u64 = tag.value_;
-
         TRY(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, fd, &ev));
     }
 
@@ -192,9 +190,9 @@ namespace Polling {
         struct epoll_event evs[Const::MaxEvents];
 
         int ready_fds = -1;
-        do {
+//        do {
             ready_fds = epoll_wait(epoll_fd, evs, maxEvents, timeout.count());
-        } while (ready_fds < 0 && errno == EINTR);
+//        } while (ready_fds < 0 && errno == EINTR);
 
         if (ready_fds > 0) {
             for (int i = 0; i < ready_fds; ++i) {

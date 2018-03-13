@@ -37,6 +37,7 @@ namespace Mime {
     SUB_TYPE(Css       , "css")        \
     \
     SUB_TYPE(Json          , "json")                  \
+    SUB_TYPE(Binary     ,   "binary") \
     SUB_TYPE(FormUrlEncoded, "x-www-form-urlencoded") \
     \
     SUB_TYPE(Png, "png") \
