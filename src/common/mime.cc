@@ -82,7 +82,10 @@ MediaType::fromFile(const char* fileName)
         { "bmp", Type::Image, Subtype::Bmp },
 
         { "txt", Type::Text, Subtype::Plain },
-        { "md", Type::Text, Subtype::Plain }
+        { "md", Type::Text, Subtype::Plain },
+        { "html", Type::Text, Subtype::Html},
+        { "css", Type::Text, Subtype::Css},
+        { "js", Type::Text, Subtype::Javascript}
     };
 
     for (const auto& ext: KnownExtensions) {
